@@ -59,7 +59,5 @@ public class ConnectionDetailController {
 	    public @ResponseBody String connection() {
 	        return "Dbview Application connection detail RESTfull API - use ./save ./update ./list ./delete endpoints";
 	    }
-
-	    
 	    
 }

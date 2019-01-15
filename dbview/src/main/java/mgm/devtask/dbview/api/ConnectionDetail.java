@@ -1,14 +1,24 @@
 package mgm.devtask.dbview.api;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Connection details main bean, with changeable fields
+ * Connection details main entity, with changeable fields
  * @author Michal Grega
  *
  */
+@Entity
 public class ConnectionDetail {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+	
 	private String name;
 	
 	private String hostname;

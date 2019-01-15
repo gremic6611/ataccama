@@ -1,7 +1,6 @@
 package mgm.devtask.dbview.service;
 
 import java.util.Collection;
-import java.util.List;
 
 import mgm.devtask.dbview.api.ConnectionDetail;
 
