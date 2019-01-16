@@ -17,4 +17,7 @@ public interface DataBrowseService {
 	public List<Map<String, Object>> listColumns(String connectionName, String schemaName, String tableName);
 	
 	public List<Map<String, Object>> previewData(String connectionName, String schemaName, String tableName);
+	
+	public List<Map<String, Object>> callAggregationFunction(String connectionName, String schemaName, String tableName,
+			String columnName, String agregationFunction);
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import mgm.devtask.dbview.api.ConnectionDetail;
 import mgm.devtask.dbview.api.DataBrowseServiceException;
+import mgm.devtask.dbview.enums.AggregationFunctionEnum;
 
 @Service
 public class DataBrowseServiceImpl implements DataBrowseService {
@@ -94,5 +95,19 @@ public class DataBrowseServiceImpl implements DataBrowseService {
 		return result;
 	}
 
-	
+	@Override
+	public List<Map<String, Object>> callAggregationFunction(String connectionName, String schemaName, String tableName,
+			String columnName, String agregationFunction) {
+		
+		//to validate - will throw exception - should be in validator
+		AggregationFunctionEnum fnct = AggregationFunctionEnum.valueOf(agregationFunction);
+		
+		JdbcTemplate template = getJdbcTemplate(connectionName, schemaName);
+		try {
+			List<Map<String, Object>> rows = template.queryForList("select " + agregationFunction+ "("+ columnName+ ") from "+tableName + ";");
+			return rows;
+		} catch (Exception e) { //I dont want gramer exception messages in controller
+			throw new DataBrowseServiceException("Problem with retrieval of data for table "+ tableName, e);
+		}
+	}
 }
