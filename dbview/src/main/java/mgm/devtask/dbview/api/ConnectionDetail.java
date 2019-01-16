@@ -1,11 +1,10 @@
 package mgm.devtask.dbview.api;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Connection details main entity, with changeable fields
@@ -19,17 +18,20 @@ public class ConnectionDetail {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@Column(nullable = false)
 	private String name;
 	
+	@Column(nullable = false)
 	private String hostname;
 	
+	@Column(nullable = false)
 	private int port;
 	
+	@Column(nullable = false)
 	private String databaseName;
 	
 	private String username;
 	
-	@JsonIgnore
 	private String password;
 	
 	public ConnectionDetail() {
@@ -91,6 +93,11 @@ public class ConnectionDetail {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@Override
+	public String toString() {
+		return "ConnectionDetail: "+this.name + ","+this.hostname+ ","+this.port+ ","+this.databaseName; 
 	}
 	
 }
